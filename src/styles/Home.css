@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.hero {
+  background-image: url("hero-image.jpg");
+  background-size: cover;
+  padding: 5em 1em;
+  text-align: center;
+}
+.hero button {
+  margin: 1em;
+  padding: 1em 2em;
+  border: none;
+  cursor: pointer;
+}
