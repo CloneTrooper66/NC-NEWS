@@ -10,7 +10,7 @@ export default function () {
         <Link to="/coding">
           <button>Learn Coding</button>
         </Link>
-        <Link to="/recipes">
+        <Link to="/cooking">
           <button>Explore Recipes</button>
         </Link>
         <Link to="/football">

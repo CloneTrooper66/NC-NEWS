@@ -1,0 +1,10 @@
+.article-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 2px;
+}
+
+.article-images {
+  margin: 10px 10px 20px 20px;
+}
