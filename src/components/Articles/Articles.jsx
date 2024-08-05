@@ -1,17 +1,14 @@
-import { fetchArticles } from "../../api";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import "../../styles/TopicsList.css";
+import { fetchArticles } from "../../api";
 import * as React from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
-import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
 import InfoIcon from "@mui/icons-material/Info";
 import Loading from "../LoadingScreen/Loading";
 
-export default function TopicsList({ topic }) {
+export default function Articles() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -19,31 +16,21 @@ export default function TopicsList({ topic }) {
     setIsLoading(true);
     fetchArticles()
       .then((data) => {
-        setArticles(
-          data.filter((object) => {
-            return object.topic === topic;
-          })
-        );
+        setArticles(data);
         setIsLoading(false);
       })
       .catch((error) => {
-        console.error("Error fetching topics:", error);
+        console.error("Error fetching articles:", error);
       });
-  }, [topic]);
+  }, []);
 
   return isLoading ? (
     <Loading />
   ) : (
     <>
+      <h1 style={{ textAlign: "center", margin: 20 }}>Articles</h1>
       <ImageList sx={{ width: "100%", height: "100%" }}>
-        <ImageListItem key="Subheader" cols={2}>
-          <ListSubheader
-            component="div"
-            style={{ textAlign: "center", fontSize: 32 }}
-          >
-            {topic[0].toUpperCase() + topic.slice(1)}
-          </ListSubheader>
-        </ImageListItem>
+        <ImageListItem key="Subheader" cols={2}></ImageListItem>
         {articles.map((item) => (
           <ImageListItem key={item.article_id}>
             <img

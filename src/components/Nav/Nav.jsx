@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles/Nav.css";
-
+import { Link } from "react-router-dom";
+import Home from "../Home/Home";
 export default function Nav() {
   function showSidebar() {
     const sidebar = document.querySelector(".sidebar");
@@ -30,14 +31,14 @@ export default function Nav() {
             </a>
           </li>
           <li>
-            <a href="#">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
             <a href="#">Articles</a>
           </li>
-          <li>
+          {/* <li>
             <a href="#">Topics</a>
-          </li>
+          </li> */}
           <li>
             <a href="#">Login</a>
           </li>
@@ -48,14 +49,14 @@ export default function Nav() {
             <a href="#">NC NEWS</a>
           </li>
           <li className="hideOnMobile">
-            <a href="#">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li className="hideOnMobile">
-            <a href="#">Articles</a>
+            <Link to="/articles">Articles</Link>
           </li>
-          <li className="hideOnMobile">
+          {/* <li className="hideOnMobile">
             <a href="#">Topics</a>
-          </li>
+          </li> */}
           <li className="hideOnMobile">
             <a href="#">Login</a>
           </li>

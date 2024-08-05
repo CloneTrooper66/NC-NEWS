@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../styles/Home.css";
-export default function () {
+export default function Home() {
   return (
     <div className="container">
       <section className="hero">
@@ -17,24 +17,6 @@ export default function () {
           <button>Football Insights</button>
         </Link>
       </section>
-      {/* ----------------------------------------------------
-| Logo               | Home About Contact          |
-----------------------------------------------------
-|                HERO SECTION                       |
-|    [Main Heading: Explore Your Interests]         |
-|    [Subheading: Dive into the world...]           |
-|    [Learn Coding]  [Explore Recipes]  [Football]  |
-----------------------------------------------------
-|  CODING       |  COOKING      |  FOOTBALL        |
-|  Intro Text   |  Intro Text   |  Intro Text      |
-|  Image        |  Image        |  Image           |
-|  [Explore]    |  [Explore]    |  [Explore]       |
-----------------------------------------------------
-| Quick Links   | Contact Info  | Newsletter Signup|
-| Coding Link   | Email         | [Email Field]    |
-| Cooking Link  | Phone         | [Subscribe]      |
-| Football Link | Social Icons  |                  |
----------------------------------------------------- */}
     </div>
   );
 }

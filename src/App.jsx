@@ -2,7 +2,8 @@ import Nav from "./components/Nav/Nav";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import TopicsList from "./components/Topics/TopicsList";
-
+import Articles from "./components/Articles/Articles";
+import ArticleDetail from "./components/Articles/ArticleDetail";
 function App() {
   return (
     <>
@@ -15,6 +16,8 @@ function App() {
           path="/football"
           element={<TopicsList topic="football" />}
         ></Route>
+        <Route path="/articles" element={<Articles />}></Route>
+        <Route path="/articles/:article_id" element={<ArticleDetail />} />
       </Routes>
     </>
   );
