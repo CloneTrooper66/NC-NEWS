@@ -15,3 +15,15 @@ export const fetchArticles = (article_id) => {
     });
   }
 };
+
+export const fetchComments = (article_id) => {
+  return api.get(`/articles/${article_id}/comments`).then((response) => {
+    return response.data;
+  });
+};
+
+export const getUsers = () => {
+  return api.get(`/users`).then((response) => {
+    return response.data;
+  });
+};
