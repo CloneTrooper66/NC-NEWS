@@ -4,7 +4,11 @@ import Home from "./components/Home/Home";
 import TopicsList from "./components/Topics/TopicsList";
 import Articles from "./components/Articles/Articles";
 import ArticleDetail from "./components/Articles/ArticleDetail";
+import Users from "./components/Users/Users";
+import { useState } from "react";
+
 function App() {
+  const [username, setUsername] = useState("");
   return (
     <>
       <Nav />
@@ -18,6 +22,7 @@ function App() {
         ></Route>
         <Route path="/articles" element={<Articles />}></Route>
         <Route path="/articles/:article_id" element={<ArticleDetail />} />
+        <Route path="/login" element={<Users />}></Route>
       </Routes>
     </>
   );

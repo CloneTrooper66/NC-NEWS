@@ -1,0 +1,87 @@
+.users-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.users-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px; /* Add margin to separate from the button */
+}
+
+.user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 200px;
+  text-align: center;
+  border: 2px solid transparent; /* Transparent border initially */
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.user-card.selected {
+  background-color: #f0f0f0; /* Light gray background when selected */
+  border-color: #007bff; /* Blue border when selected */
+}
+
+.user-avatar img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ffffff; /* White border for avatar */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.3s ease;
+}
+
+.user-avatar img:hover {
+  transform: scale(1.1); /* Zoom effect on avatar hover */
+}
+
+.user-info {
+  margin-top: 10px;
+}
+
+.username {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333333; /* Dark text color */
+}
+
+.name {
+  font-size: 14px;
+  color: #666666; /* Lighter text color */
+  margin-bottom: 5px;
+}
+
+.confirm-button {
+  background-color: #007bff; /* Blue background */
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px; /* Separate from the user cards */
+}
+
+.confirm-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}

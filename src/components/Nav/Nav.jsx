@@ -40,7 +40,7 @@ export default function Nav() {
             <a href="#">Topics</a>
           </li> */}
           <li>
-            <a href="#">Login</a>
+            <Link to="/login">Login</Link>
           </li>
         </ul>
 
@@ -58,7 +58,7 @@ export default function Nav() {
             <a href="#">Topics</a>
           </li> */}
           <li className="hideOnMobile">
-            <a href="#">Login</a>
+            <Link to="/login">Login</Link>
           </li>
           <li className="menu-button" onClick={showSidebar}>
             <a href="#">

@@ -7,7 +7,7 @@ import ImageListItemBar from "@mui/material/ImageListItemBar";
 import IconButton from "@mui/material/IconButton";
 import InfoIcon from "@mui/icons-material/Info";
 import Loading from "../LoadingScreen/Loading";
-
+import { Link } from "react-router-dom";
 export default function Articles() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -40,7 +40,14 @@ export default function Articles() {
               loading="lazy"
             />
             <ImageListItemBar
-              title={item.title}
+              title={
+                <Link
+                  to={`/articles/${item.article_id}`}
+                  style={{ color: "#4169E1" }}
+                >
+                  {item.title}
+                </Link>
+              }
               subtitle={
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <span>

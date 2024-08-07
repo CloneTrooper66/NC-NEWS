@@ -4,6 +4,7 @@ import Loading from "../LoadingScreen/Loading";
 import { fetchArticles, fetchComments } from "../../api";
 import "../../styles/comments.css";
 import { getUsers } from "../../api";
+
 export default function ArticleDetail() {
   const { article_id } = useParams();
   const [article, setArticle] = useState(null);

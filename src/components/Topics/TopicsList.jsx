@@ -53,7 +53,14 @@ export default function TopicsList({ topic }) {
               loading="lazy"
             />
             <ImageListItemBar
-              title={item.title}
+              title={
+                <Link
+                  to={`/articles/${item.article_id}`}
+                  style={{ color: "#4169E1" }}
+                >
+                  {item.title}
+                </Link>
+              }
               subtitle={
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <span>
