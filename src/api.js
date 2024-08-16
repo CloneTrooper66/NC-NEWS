@@ -27,3 +27,23 @@ export const getUsers = () => {
     return response.data;
   });
 };
+
+export const postComment = (article_id, username, body) => {
+  return api
+    .post(`articles/${article_id}/comments`, { username, body })
+    .then((response) => {
+      return response.data;
+    });
+};
+
+export const deleteComment = (Comment_id) => {
+  return api.delete(`/comments/${Comment_id}`);
+};
+
+export const updateArticleVotes = (article_id, inc_votes) => {
+  return api
+    .patch(`/articles/${article_id}`, { inc_votes })
+    .then((response) => {
+      return response.data;
+    });
+};

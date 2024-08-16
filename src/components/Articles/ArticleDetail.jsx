@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../LoadingScreen/Loading";
-import { fetchArticles, fetchComments } from "../../api";
+import { fetchArticles, fetchComments, updateArticleVotes } from "../../api";
 import "../../styles/comments.css";
 import { getUsers } from "../../api";
+import CommentsForm from "../Comments/CommentsForm";
+import Comments from "../Comments/Comments";
 
-export default function ArticleDetail() {
+export default function ArticleDetail({ activeUser }) {
   const { article_id } = useParams();
   const [article, setArticle] = useState(null);
   const [comments, setComments] = useState([]);
-  const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setIsLoading(true);
+
     fetchArticles(article_id)
       .then((data) => {
         setArticle(data);
@@ -21,10 +23,6 @@ export default function ArticleDetail() {
       })
       .then((comments) => {
         setComments(comments);
-        return getUsers();
-      })
-      .then((data) => {
-        setUsers(data);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -32,39 +30,55 @@ export default function ArticleDetail() {
       });
   }, [article_id]);
 
+  const addComment = (newComment) => {
+    setComments([newComment, ...comments]);
+  };
+
+  const removeComment = (commentId) =>
+    setComments((prevComments) =>
+      prevComments.filter((comment) => comment.comment_id !== commentId)
+    );
+
+  const handleVote = (inc_votes) => {
+    const newVotes = article.votes + inc_votes;
+    setArticle({ ...article, votes: newVotes });
+    updateArticleVotes(article_id, inc_votes).catch((error) => {
+      setArticle({ ...article, votes: article.votes - inc_votes });
+    });
+  };
   return isLoading ? (
     <Loading />
   ) : (
-    <>
+    <div className="article-detail">
       <h1>{article.title}</h1>
-      <img src={article.article_img_url} alt={article.article_title} />
-      <p>{article.body}</p>
-      <div className="comments-section">
-        <h2>Comments</h2>
-        <div className="comments-list">
-          {comments.map((comment) => {
-            const user = users.find((user) => user.username === comment.author);
-            return (
-              <div key={comment.comment_id} className="comment">
-                <div className="comment-header">
-                  <img
-                    src={user.avatar_url}
-                    alt="User Avatar"
-                    className="avatar"
-                  />
-                  <span className="username">{user.username}</span>
-                </div>
-                <p className="comment-text">{comment.body}</p>
-                <p>Votes: {comment.votes}</p>
-                <p className="comment-info">
-                  Posted by <strong>{comment.author}</strong> on <br />
-                  <b>{new Date(comment.created_at).toLocaleDateString()}</b>
-                </p>
-              </div>
-            );
-          })}
-        </div>
+      <img src={article.article_img_url} alt={article.title} />
+      <p className="article-body">{article.body}</p>
+      <p className="article-votes">
+        Total Votes: <span className="votes-number">{article.votes}</span>
+      </p>
+      <div className="up-vote">
+        <button className="like-button" onClick={() => handleVote(1)}>
+          Like
+        </button>
+        <button className="dislike-button" onClick={() => handleVote(-1)}>
+          Dislike
+        </button>
       </div>
-    </>
+
+      <p className="article-date">
+        Created on {new Date(article.created_at).toLocaleDateString()}
+      </p>
+      <h2>Comments</h2>
+      <Comments
+        comments={comments}
+        removeComment={removeComment}
+        currentUser={activeUser}
+      />
+      <CommentsForm
+        article_id={article_id}
+        activeUser={activeUser}
+        addComment={addComment}
+      />
+    </div>
   );
 }

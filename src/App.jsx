@@ -40,7 +40,10 @@ function App() {
         ></Route>
         <Route path="/topics" element={<Home />}></Route>
         <Route path="/articles" element={<Articles />}></Route>
-        <Route path="/articles/:article_id" element={<ArticleDetail />} />
+        <Route
+          path="/articles/:article_id"
+          element={<ArticleDetail activeUser={username} />}
+        />
         <Route
           path="/login"
           element={<Users onSelectUser={handleUserSelect} />}
