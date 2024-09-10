@@ -12,6 +12,7 @@ export default function ArticleDetail({ activeUser }) {
   const [article, setArticle] = useState(null);
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [hasVoted, setHasVoted] = useState(false); // New state to track if the user has voted
 
   useEffect(() => {
     setIsLoading(true);
@@ -42,10 +43,15 @@ export default function ArticleDetail({ activeUser }) {
   const handleVote = (inc_votes) => {
     const newVotes = article.votes + inc_votes;
     setArticle({ ...article, votes: newVotes });
-    updateArticleVotes(article_id, inc_votes).catch((error) => {
-      setArticle({ ...article, votes: article.votes - inc_votes });
-    });
+    updateArticleVotes(article_id, inc_votes)
+      .then(() => {
+        setHasVoted(true); // Set the state to indicate the user has voted
+      })
+      .catch((error) => {
+        setArticle({ ...article, votes: article.votes - inc_votes });
+      });
   };
+
   return isLoading ? (
     <Loading />
   ) : (
@@ -57,10 +63,18 @@ export default function ArticleDetail({ activeUser }) {
         Total Votes: <span className="votes-number">{article.votes}</span>
       </p>
       <div className="up-vote">
-        <button className="like-button" onClick={() => handleVote(1)}>
+        <button
+          className="like-button"
+          onClick={() => handleVote(1)}
+          disabled={hasVoted} // Disable button if user has voted
+        >
           Like
         </button>
-        <button className="dislike-button" onClick={() => handleVote(-1)}>
+        <button
+          className="dislike-button"
+          onClick={() => handleVote(-1)}
+          disabled={hasVoted} // Disable button if user has voted
+        >
           Dislike
         </button>
       </div>
